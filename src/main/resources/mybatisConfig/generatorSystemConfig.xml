@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 替换为本地数据库驱动jar -->
+	<classPathEntry location="C:/maven/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar" />
+	<context id="context1" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializableExamplePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.PaginationPlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.PaginationPluginEx"></plugin>
+		<plugin type="org.mybatis.generator.plugins.BaseEntityPlugin"></plugin>
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+			<property name="paginatorClass" value="cn.net.gwbnsh.framework.dao.Paginator" />
+			<property name="mapperClass" value="cn.net.gwbnsh.framework.dao.BaseMapper" />
+			<property name="baseEntityClass" value="cn.net.gwbnsh.framework.entity.BaseEntity" />
+		</commentGenerator>
+
+		<!--数据库连接-->
+		<!--<pl:jdbcurl>
+			<li userId="tipine_ims" password="9pWphpJQeZZohtsP">jdbc:mysql://sh-cdb-bq8fivew.sql.tencentcdb.com:60849/test_ims?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai&amp;tinyInt1isBit=false&amp;useSSL=false</li>
+			<li userId="gwbnsh_dev" password="dev_123">jdbc:mysql://10.65.255.121:3306/dev_trade?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai&amp;tinyInt1isBit=false&amp;useSSL=false</li>
+		</pl:jdbcurl>-->
+
+		<!-- 数据库驱动、jdbc、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://10.146.189.202:3306/dev_product?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai&amp;tinyInt1isBit=false&amp;useSSL=false"
+						userId="view" password="H4ZR3C3fw%nVGGQC" >
+			<property name="nullCatalogMeansCurrent" value="true" />
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="true" />
+		</javaTypeResolver>
+
+		<!-- 实体包名，输出文件夹；mapper包名，输出文件夹 -->
+		<javaModelGenerator targetPackage="cn.net.gwbnsh.product.mapper.entity" targetProject="output">
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="cn.net.gwbnsh.product.mapper" targetProject="output" />
+
+		<!--mapper对应的xml中的namespace和输出文件夹-->
+		<javaClientGenerator type="XMLMAPPER"
+							 targetPackage="cn.net.gwbnsh.product.mapper" targetProject="output"
+							 implementationPackage="cn.net.gwbnsh.product.mapper.impl">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 数据库表名 以及 生成的对应的实体名 -->
+		<table tableName="product_sku" domainObjectName="ProductSku">
+			<!-- generatedKey主键 -->
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+			<!-- text、longtext等数据库字段类型转string -->
+			<!-- <columnOverride column="BUSINESS_EXPLANATION" javaType="java.lang.String" jdbcType="VARCHAR" /> -->
+			<!-- <columnOverride column="API_PRIVATE_KEY" javaType="java.lang.String" jdbcType="VARCHAR" /> -->
+			<!-- <columnOverride column="BUSINESS_EXPLANATION" javaType="java.lang.String" jdbcType="VARCHAR" /> -->
+		</table>
+	</context>
+</generatorConfiguration>
